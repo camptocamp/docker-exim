@@ -1,0 +1,10 @@
+smtp:
+  image: camptocamp/georchestra-smtp-prod
+  environment:
+    - POSTMASTER=postmaster@domain.org
+    - MAILNAME=host-smtp
+  ports:
+    - "2525:25"
+  volumes:
+    - mailboxes:/var/mail/
+    - email_queue:/var/spool/exim4
