@@ -6,5 +6,18 @@ echo "root: $POSTMASTER" >> /etc/aliases
 
 /usr/bin/newaliases
 
+if [ -n "$RELAY_HOST" ]; then
+    SMART_HOST=${RELAY_HOST}::${RELAY_PORT:-25}
+    sed -i s/{config_type}/smarthost/ /etc/exim4/update-exim4.conf.conf
+    sed -i s/{smart_host}/${SMART_HOST}/ /etc/exim4/update-exim4.conf.conf
+else
+    sed -i s/{config_type}/internet/ /etc/exim4/update-exim4.conf.conf
+    sed -i s/{smart_host}// /etc/exim4/update-exim4.conf.conf
+fi
+
+if [ -n "$RELAY_USERNAME" ]; then
+    echo "${RELAY_HOST}:${RELAY_USERNAME}:${RELAY_PASSWORD}" > /etc/exim4/passwd.client
+fi
+
 chown -R Debian-exim /var/spool/exim4
 chown -R Debian-exim /var/mail

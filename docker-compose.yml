@@ -1,0 +1,22 @@
+version: '2'
+volumes:
+  mailboxes:
+  email_queue:
+services:
+  smtp:
+    image: camptocamp/exim
+    build: .
+    environment:
+      - POSTMASTER=postmaster@domain.org
+      - MAILNAME=host-smtp-366
+      - RELAY_HOST=relay.com
+      - RELAY_PORT=25
+      - RELAY_USERNAME=joe
+      - RELAY_PASSWORD=p4ssJ0e
+    ports:
+      - "25:25"
+    volumes:
+      - mailboxes:/var/mail/
+      - email_queue:/var/spool/exim4
+    hostname: foo.com
+
