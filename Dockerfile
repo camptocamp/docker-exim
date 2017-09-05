@@ -8,11 +8,11 @@ RUN apt-get update && \
 
 RUN echo "dc_eximconfig_configtype='{config_type}'" > /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_other_hostnames=''" >> /etc/exim4/update-exim4.conf.conf && \
-		echo "dc_local_interfaces=''" >> /etc/exim4/update-exim4.conf.conf && \
+		echo "dc_local_interfaces='0.0.0.0'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_readhost=''" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_relay_domains='*'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_minimaldns='false'" >> /etc/exim4/update-exim4.conf.conf && \
-		echo "dc_relay_nets='0.0.0.0/48'" >> /etc/exim4/update-exim4.conf.conf && \
+		echo "dc_relay_nets='0.0.0.0/0'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_smarthost='{smart_host}'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "CFILEMODE='644'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_use_split_config='false'" >> /etc/exim4/update-exim4.conf.conf && \
