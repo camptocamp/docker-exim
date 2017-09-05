@@ -16,7 +16,7 @@ RUN echo "dc_eximconfig_configtype='{config_type}'" > /etc/exim4/update-exim4.co
 		echo "dc_smarthost='{smart_host}'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "CFILEMODE='644'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_use_split_config='false'" >> /etc/exim4/update-exim4.conf.conf && \
-		echo "dc_hide_mailname=''" >> /etc/exim4/update-exim4.conf.conf && \
+		echo "dc_hide_mailname='true'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_mailname_in_oh='true'" >> /etc/exim4/update-exim4.conf.conf && \
 		echo "dc_localdelivery='mail_spool'" >> /etc/exim4/update-exim4.conf.conf && \
 		/usr/sbin/update-exim4.conf
