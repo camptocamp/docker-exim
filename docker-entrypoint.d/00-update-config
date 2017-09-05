@@ -19,5 +19,7 @@ if [ -n "$RELAY_USERNAME" ]; then
     echo "*:${RELAY_USERNAME}:${RELAY_PASSWORD}" > /etc/exim4/passwd.client
 fi
 
+update−exim4.conf
+
 chown -R Debian-exim /var/spool/exim4
 chown -R Debian-exim /var/mail
