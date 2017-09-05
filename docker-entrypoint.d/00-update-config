@@ -16,7 +16,7 @@ else
 fi
 
 if [ -n "$RELAY_USERNAME" ]; then
-    echo "${RELAY_HOST}:${RELAY_USERNAME}:${RELAY_PASSWORD}" > /etc/exim4/passwd.client
+    echo "*:${RELAY_USERNAME}:${RELAY_PASSWORD}" > /etc/exim4/passwd.client
 fi
 
 chown -R Debian-exim /var/spool/exim4
