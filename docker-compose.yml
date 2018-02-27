@@ -2,21 +2,41 @@ version: '2'
 volumes:
   mailboxes:
   email_queue:
+  sqlite:
+  mailbox:
 services:
   smtp:
     image: camptocamp/exim
     build: .
     environment:
-      - POSTMASTER=postmaster@domain.org
-      - MAILNAME=host-smtp-366
-      - RELAY_HOST=relay.com
+      - POSTMASTER=postmaster@foo.com
+      - MAILNAME=foo.com
+      - RELAY_HOST=smtp-sink
       - RELAY_PORT=25
-      - RELAY_USERNAME=joe
-      - RELAY_PASSWORD=p4ssJ0e
     ports:
-      - "25:25"
+      - "2525:25"
     volumes:
       - mailboxes:/var/mail/
       - email_queue:/var/spool/exim4
-    hostname: foo.com
 
+  smtp-sink:
+    image: camptocamp/smtp-sink
+    volumes:
+      - mailbox:/home/smtp/Maildir/
+
+  courier-imap:
+    image: camptocamp/courier-imap
+    ports:
+      - "143:143"
+    volumes:
+      - mailbox:/home/smtp/Maildir/
+
+  webmail:
+    image: camptocamp/roundcube
+    environment:
+      - IMAP_HOSTNAME=courier-imap
+      - SMTP_HOSTNAME=smtp-sink
+    ports:
+      - "8080:80"
+    volumes:
+      - sqlite:/var/lib/dbconfig-common/sqlite3/roundcube

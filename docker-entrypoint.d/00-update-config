@@ -6,6 +6,8 @@ echo "root: $POSTMASTER" >> /etc/aliases
 
 /usr/bin/newaliases
 
+sed -i s/{helo_data}/${MAILNAME}/ /etc/exim4/update-exim4.conf.conf
+
 if [ -n "$RELAY_HOST" ]; then
     SMART_HOST=${RELAY_HOST}::${RELAY_PORT:-25}
     sed -i s/{config_type}/satellite/ /etc/exim4/update-exim4.conf.conf
