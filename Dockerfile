@@ -19,7 +19,7 @@ RUN echo "dc_eximconfig_configtype='{config_type}'" > /etc/exim4/update-exim4.co
     echo "dc_hide_mailname='true'" >> /etc/exim4/update-exim4.conf.conf && \
     echo "dc_mailname_in_oh='true'" >> /etc/exim4/update-exim4.conf.conf && \
     echo "dc_localdelivery='mail_spool'" >> /etc/exim4/update-exim4.conf.conf && \
-    echo "REMOTE_SMTP_HELO_DATA='{helo_data}'" >> /etc/exim4/update-exim4.conf.conf && \
+    echo "REMOTE_SMTP_HELO_DATA={helo_data}" >> /etc/exim4/update-exim4.conf.conf && \
     /usr/sbin/update-exim4.conf
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
