@@ -23,7 +23,7 @@ RUN echo "dc_eximconfig_configtype='{config_type}'" > /etc/exim4/update-exim4.co
     /usr/sbin/update-exim4.conf
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN mkdir /docker-entrypoint.d
+RUN mkdir -p /docker-entrypoint.d
 COPY /docker-entrypoint.d/* /docker-entrypoint.d/
 RUN cp /etc/aliases /etc/aliases.stub
 
