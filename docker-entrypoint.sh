@@ -13,7 +13,7 @@ fi
 
 if [[ -d "$DIR" ]]
 then
-  /bin/run-parts --verbose --exit-on-error "$DIR"
+  /bin/run-parts --verbose --exit-on-error --regex='.*' "$DIR"
 fi
 
 if [ $? -eq 0 ]; then
